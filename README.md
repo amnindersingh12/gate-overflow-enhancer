@@ -1,5 +1,15 @@
 # GateOverflow GATE Prep – Chrome Extension
 
+![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/gate-overflow-enhancer)
+![GitHub PRs](https://img.shields.io/github/issues-pr/YOUR_USERNAME/gate-overflow-enhancer)
+![License](https://img.shields.io/github/license/YOUR_USERNAME/gate-overflow-enhancer)
+![Good First Issues](https://img.shields.io/github/issues/YOUR_USERNAME/gate-overflow-enhancer/good%20first%20issue?color=7057ff&label=good%20first%20issues)
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)
+![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?logo=typescript&logoColor=white)
+
+> **After pushing to GitHub, replace `YOUR_USERNAME` in all badge URLs with your GitHub username.**
+
 A Chrome extension (Manifest V3) that enhances [GateOverflow.in](https://gateoverflow.in) with personal tagging, advanced filtering, and quiz features for GATE preparation.
 
 ## Features
@@ -94,3 +104,24 @@ gate-overflow-enhancer/
 - **Vite** – Fast builds with multi-entry output
 - **No frameworks** – Vanilla TypeScript for minimal bundle size
 - **No server changes** – Everything runs client-side as a browser overlay
+
+---
+
+## Contributing
+
+Contributions are welcome! Whether you're a GATE aspirant with a feature idea or a developer looking for a bite-sized project:
+
+- 🌱 **New to the project?** Check out [`good first issue`](../../labels/good%20first%20issue) labels
+- 🐛 **Found a bug?** [Open a bug report](../../issues/new?template=bug_report.yml)
+- 💡 **Have an idea?** [Open a feature request](../../issues/new?template=feature_request.yml)
+- 🔧 **Ready to code?** Read [CONTRIBUTING.md](./CONTRIBUTING.md) then fork and PR
+
+### Suggested GitHub Topics
+
+After pushing to GitHub, go to your repository → **⚙ Settings** (gear icon near description) → add these topics to help others discover the project:
+
+```
+chrome-extension  browser-extension  manifest-v3  typescript
+gate-exam  gate-preparation  gateoverflow  study-tool
+vite  productivity
+```

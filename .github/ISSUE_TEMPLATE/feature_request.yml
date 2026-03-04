@@ -1,0 +1,58 @@
+name: 💡 Feature Request
+description: Suggest a new feature or improvement
+labels: ["enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea? Great! Describe the problem you're solving — not just the solution.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What problem does this solve? Why do you need this?
+      placeholder: "When revising, I can't easily find questions I marked as 'weak' in a specific subject..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe what you'd like to see.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any workarounds you've tried, or other approaches you considered?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Feature area
+      options:
+        - Filtering / Search
+        - Tagging / Annotations
+        - Quiz Mode
+        - Data Management (import/export)
+        - UI / UX
+        - Performance
+        - Accessibility
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Mockups, screenshots, links to similar tools — anything helpful.
+    validations:
+      required: false

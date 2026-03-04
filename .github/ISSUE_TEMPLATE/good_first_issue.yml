@@ -1,0 +1,64 @@
+name: 🌱 Good First Issue
+description: A well-scoped task suitable for first-time contributors
+labels: ["good first issue", "help wanted"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is marked as a **Good First Issue** — it's a great entry point if you're new to this project or to Chrome extension development.
+
+        **Before starting:**
+        1. Read [CONTRIBUTING.md](../../blob/main/CONTRIBUTING.md)
+        2. Comment below to claim this issue — we'll assign it to you
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs to be done
+      description: A clear, scoped description of the task.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & background
+      description: Where does this fit in the codebase? What should the contributor know?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How do we know this is done?
+      placeholder: |
+        - [ ] Works on list pages (/questions)
+        - [ ] Works on detail pages (/12345/...)
+        - [ ] No console errors
+        - [ ] Existing behavior unchanged
+    validations:
+      required: true
+
+  - type: textarea
+    id: hints
+    attributes:
+      label: Hints & suggested approach
+      description: Pointers to relevant files, functions, or approaches to get started.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skills needed
+      multiple: true
+      options:
+        - TypeScript
+        - DOM / CSS
+        - Chrome Extension APIs
+        - Build tooling (Vite)
+        - No code (docs/test)
+    validations:
+      required: false
