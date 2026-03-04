@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=420, initial-scale=1.0" />
+  <title>GateOverflow GATE Prep</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="go-popup-header">
+    <div class="go-popup-logo">
+      <span class="go-popup-logo-icon">📚</span>
+      <h1>GATE Prep</h1>
+    </div>
+    <div class="go-popup-stats" id="stats-bar">
+      <span id="total-count" title="Total stored questions">0 Qs</span>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="go-tabs">
+    <button class="go-tab go-tab--active" data-tab="filter">🔍 Filter</button>
+    <button class="go-tab" data-tab="quiz">🧠 Quiz</button>
+    <button class="go-tab" data-tab="settings">⚙️ Settings</button>
+  </nav>
+
+  <!-- ═══ Filter Tab ═══ -->
+  <section class="go-panel" id="panel-filter">
+    <div class="go-filter-row">
+      <input type="text" id="search-text" class="go-input" placeholder="Search titles & body…" />
+    </div>
+
+    <div class="go-filter-row go-filter-row--dual">
+      <div class="go-filter-col">
+        <label class="go-label">Subject</label>
+        <select id="filter-subject" class="go-select">
+          <option value="">All Subjects</option>
+        </select>
+      </div>
+      <div class="go-filter-col">
+        <label class="go-label">Mark Type</label>
+        <select id="filter-mark" class="go-select">
+          <option value="any">Any</option>
+          <option value="1-mark">1-Mark</option>
+          <option value="2-mark">2-Mark</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="go-filter-row go-filter-row--dual">
+      <div class="go-filter-col">
+        <label class="go-label">Year Range</label>
+        <div class="go-range-inputs">
+          <input type="number" id="year-min" class="go-input go-input--sm" placeholder="From" min="2000" max="2030" />
+          <span class="go-range-sep">–</span>
+          <input type="number" id="year-max" class="go-input go-input--sm" placeholder="To" min="2000" max="2030" />
+        </div>
+      </div>
+      <div class="go-filter-col">
+        <label class="go-label">Difficulty</label>
+        <div class="go-range-inputs">
+          <select id="diff-min" class="go-select go-select--sm">
+            <option value="0">Any</option>
+            <option value="1">★</option>
+            <option value="2">★★</option>
+            <option value="3">★★★</option>
+            <option value="4">★★★★</option>
+            <option value="5">★★★★★</option>
+          </select>
+          <span class="go-range-sep">–</span>
+          <select id="diff-max" class="go-select go-select--sm">
+            <option value="0">Any</option>
+            <option value="1">★</option>
+            <option value="2">★★</option>
+            <option value="3">★★★</option>
+            <option value="4">★★★★</option>
+            <option value="5">★★★★★</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="go-filter-row">
+      <div class="go-tags-header">
+        <label class="go-label">GO Tags</label>
+        <div class="go-logic-toggle">
+          <button class="go-logic-btn go-logic-btn--active" data-logic="OR" id="logic-or">OR</button>
+          <button class="go-logic-btn" data-logic="AND" id="logic-and">AND</button>
+        </div>
+      </div>
+      <div id="go-tags-container" class="go-tags-picker"></div>
+    </div>
+
+    <div class="go-filter-row">
+      <label class="go-label">My Tags</label>
+      <div id="custom-tags-container" class="go-tags-picker"></div>
+    </div>
+
+    <div class="go-filter-actions">
+      <button id="btn-apply" class="go-btn go-btn--primary">Apply Filters</button>
+      <button id="btn-clear" class="go-btn go-btn--ghost">Clear</button>
+      <span id="result-count" class="go-result-count"></span>
+    </div>
+
+    <!-- Results -->
+    <div id="results-list" class="go-results"></div>
+  </section>
+
+  <!-- ═══ Quiz Tab ═══ -->
+  <section class="go-panel go-panel--hidden" id="panel-quiz">
+    <!-- Quiz Setup -->
+    <div id="quiz-setup">
+      <p class="go-hint">Start a quiz from your filtered questions. Apply filters first on the Filter tab.</p>
+      <div class="go-filter-row go-filter-row--dual">
+        <div class="go-filter-col">
+          <label class="go-label">Number of Questions</label>
+          <input type="number" id="quiz-count" class="go-input" value="10" min="1" max="100" />
+        </div>
+        <div class="go-filter-col" style="display:flex;align-items:flex-end">
+          <button id="btn-start-quiz" class="go-btn go-btn--primary" style="width:100%">🚀 Start Quiz</button>
+        </div>
+      </div>
+      <p id="quiz-pool-info" class="go-hint"></p>
+    </div>
+
+    <!-- Quiz In Progress -->
+    <div id="quiz-active" class="go-quiz-active" style="display:none">
+      <div class="go-quiz-progress">
+        <div class="go-quiz-progress-bar">
+          <div id="quiz-progress-fill" class="go-quiz-progress-fill"></div>
+        </div>
+        <span id="quiz-progress-text" class="go-quiz-progress-text">0 / 0</span>
+      </div>
+
+      <div id="quiz-question-card" class="go-quiz-card">
+        <h3 id="quiz-q-title" class="go-quiz-q-title"></h3>
+        <p id="quiz-q-snippet" class="go-quiz-q-snippet"></p>
+        <div id="quiz-q-tags" class="go-quiz-q-tags"></div>
+        <a id="quiz-q-link" class="go-quiz-q-link" href="#" target="_blank">Open on GateOverflow →</a>
+      </div>
+
+      <div class="go-quiz-actions">
+        <button id="quiz-correct" class="go-btn go-btn--success">✓ Correct</button>
+        <button id="quiz-wrong" class="go-btn go-btn--danger">✗ Wrong</button>
+        <button id="quiz-skip" class="go-btn go-btn--ghost">Skip</button>
+      </div>
+    </div>
+
+    <!-- Quiz Results -->
+    <div id="quiz-results" class="go-quiz-results" style="display:none">
+      <h3>Quiz Complete! 🎉</h3>
+      <div class="go-quiz-stats">
+        <div class="go-quiz-stat go-quiz-stat--correct">
+          <span class="go-quiz-stat-num" id="stat-correct">0</span>
+          <span class="go-quiz-stat-label">Correct</span>
+        </div>
+        <div class="go-quiz-stat go-quiz-stat--wrong">
+          <span class="go-quiz-stat-num" id="stat-wrong">0</span>
+          <span class="go-quiz-stat-label">Wrong</span>
+        </div>
+        <div class="go-quiz-stat go-quiz-stat--skip">
+          <span class="go-quiz-stat-num" id="stat-skipped">0</span>
+          <span class="go-quiz-stat-label">Skipped</span>
+        </div>
+      </div>
+      <button id="btn-new-quiz" class="go-btn go-btn--primary" style="width:100%;margin-top:12px">New Quiz</button>
+    </div>
+  </section>
+
+  <!-- ═══ Settings Tab ═══ -->
+  <section class="go-panel go-panel--hidden" id="panel-settings">
+    <h3 class="go-settings-heading">Custom Tags</h3>
+    <div id="settings-tags" class="go-settings-tags"></div>
+    <div class="go-filter-row" style="gap:6px;display:flex">
+      <input type="text" id="new-tag-input" class="go-input" placeholder="New tag name…" style="flex:1" />
+      <button id="btn-add-tag" class="go-btn go-btn--primary">Add</button>
+    </div>
+
+    <hr class="go-divider" />
+
+    <h3 class="go-settings-heading">Data Management</h3>
+    <div class="go-settings-actions">
+      <button id="btn-export" class="go-btn go-btn--outline">📤 Export JSON</button>
+      <label class="go-btn go-btn--outline" style="cursor:pointer">
+        📥 Import JSON
+        <input type="file" id="btn-import" accept=".json" style="display:none" />
+      </label>
+      <button id="btn-clear-data" class="go-btn go-btn--danger">🗑️ Clear All Data</button>
+    </div>
+    <p id="settings-message" class="go-hint"></p>
+  </section>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

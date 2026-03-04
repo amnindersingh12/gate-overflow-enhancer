@@ -1,0 +1,20 @@
+{
+  "name": "gate-overflow-enhancer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal GATE prep enhancer for GateOverflow.in",
+  "type": "module",
+  "scripts": {
+    "prebuild": "rm -rf dist && mkdir -p dist/icons && cp manifest.json dist/ && cp public/icons/* dist/icons/ && cp src/content/content.css dist/",
+    "build:content": "BUILD_ENTRY=content vite build",
+    "build:popup": "BUILD_ENTRY=popup vite build",
+    "build:sw": "BUILD_ENTRY=service-worker vite build",
+    "build": "npm run prebuild && npm run build:content && npm run build:popup && npm run build:sw && node scripts/fix-popup.mjs",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "typescript": "^5.7.0",
+    "vite": "^6.1.0"
+  }
+}

@@ -1,0 +1,679 @@
+/* ══════════════════════════════════════════
+   GateOverflow Enhancer – Content Script CSS
+   Blends with GateOverflow's existing style
+   ══════════════════════════════════════════ */
+
+/* ── Toolbar Container ── */
+.go-enhance-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 8px 0 4px 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(59, 130, 246, 0.04);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.go-enhance-toolbar:hover {
+  background: rgba(59, 130, 246, 0.07);
+}
+
+.go-enhance-toolbar--detail {
+  margin: 12px 0;
+  padding: 10px 14px;
+}
+
+/* ── Mark Type Toggle ── */
+.go-mark-toggle {
+  display: flex;
+  gap: 2px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #d1d5db;
+}
+
+.go-mark-btn {
+  padding: 3px 10px;
+  border: none;
+  background: #f9fafb;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.go-mark-btn:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.go-mark-btn--active {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.go-mark-btn--active:hover {
+  background: #2563eb;
+}
+
+/* ── Priority Dropdown ── */
+.go-priority-select {
+  display: flex;
+  align-items: center;
+}
+
+.go-priority-dropdown {
+  padding: 3px 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  color: #374151;
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.go-priority-dropdown:focus {
+  border-color: #3b82f6;
+}
+
+/* ── Difficulty Stars ── */
+.go-difficulty-stars {
+  display: flex;
+  gap: 1px;
+  cursor: pointer;
+}
+
+.go-star {
+  font-size: 18px;
+  color: #d1d5db;
+  cursor: pointer;
+  transition: color 0.1s, transform 0.1s;
+  line-height: 1;
+  user-select: none;
+}
+
+.go-star:hover {
+  transform: scale(1.15);
+}
+
+.go-star--filled {
+  color: #f59e0b;
+}
+
+.go-star--hover {
+  color: #fbbf24;
+}
+
+/* ── Custom Tag Chips ── */
+.go-custom-tags {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.go-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--tag-color, #6366f1);
+  cursor: default;
+  white-space: nowrap;
+  line-height: 1.6;
+  transition: opacity 0.15s;
+}
+
+.go-tag-chip:hover {
+  opacity: 0.9;
+}
+
+.go-tag-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  margin-left: 2px;
+  transition: background 0.1s;
+}
+
+.go-tag-chip-remove:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Add Tag Button ── */
+.go-tag-add {
+  padding: 2px 10px;
+  border: 1px dashed #9ca3af;
+  border-radius: 12px;
+  background: transparent;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.go-tag-add:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* ── Tag Dropdown ── */
+.go-tag-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 9999;
+  min-width: 160px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  margin-top: 4px;
+  padding: 4px;
+}
+
+.go-tag-dropdown-item {
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #374151;
+  transition: background 0.1s;
+}
+
+.go-tag-dropdown-item:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.go-tag-dropdown-item::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tag-color, #6366f1);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.go-tag-custom-input {
+  width: calc(100% - 16px);
+  margin: 4px 8px;
+  padding: 5px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.go-tag-custom-input:focus {
+  border-color: #3b82f6;
+}
+
+.go-tag-custom-input::placeholder {
+  color: #9ca3af;
+}
+
+/* ── Dark Mode Support ── */
+@media (prefers-color-scheme: dark) {
+  .go-enhance-toolbar {
+    background: rgba(59, 130, 246, 0.06);
+    border-color: rgba(59, 130, 246, 0.15);
+  }
+
+  .go-mark-btn {
+    background: #1f2937;
+    color: #9ca3af;
+    border-color: #374151;
+  }
+
+  .go-mark-btn:hover {
+    background: #374151;
+    color: #e5e7eb;
+  }
+
+  .go-priority-dropdown {
+    background: #1f2937;
+    color: #e5e7eb;
+    border-color: #374151;
+  }
+
+  .go-star {
+    color: #4b5563;
+  }
+
+  .go-tag-dropdown {
+    background: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .go-tag-dropdown-item {
+    color: #e5e7eb;
+  }
+
+  .go-tag-dropdown-item:hover {
+    background: rgba(59, 130, 246, 0.12);
+  }
+
+  .go-tag-custom-input {
+    background: #111827;
+    color: #e5e7eb;
+    border-color: #374151;
+  }
+
+  .go-tag-add {
+    color: #9ca3af;
+    border-color: #4b5563;
+  }
+
+  .go-tag-add:hover {
+    border-color: #60a5fa;
+    color: #60a5fa;
+  }
+}
+
+/* ══════════════════════════════════════════
+   In-Page Filter Panel
+   ══════════════════════════════════════════ */
+
+#go-filter-panel {
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  width: 280px;
+  max-height: calc(100vh - 100px);
+  z-index: 99999;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: width 0.2s;
+}
+
+#go-filter-panel.go-fp--collapsed {
+  width: 48px;
+}
+
+.go-fp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  color: #fff;
+}
+
+.go-fp-logo {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.go-fp--collapsed .go-fp-logo {
+  display: none;
+}
+
+.go-fp-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.go-fp-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.go-fp-body {
+  padding: 12px 14px;
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
+}
+
+.go-fp-section {
+  color: black;
+  margin-bottom: 12px;
+}
+
+.go-fp-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+}
+
+.go-fp-label-hint {
+  font-weight: 400;
+  text-transform: none;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.go-fp-input {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1e293b !important;
+  background: #f8fafc !important;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+}
+
+.go-fp-input:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: #fff !important;
+}
+
+.go-fp-select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1e293b !important;
+  background: #f8fafc !important;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.go-fp-select:focus {
+  border-color: #3b82f6;
+}
+
+/* Mark type buttons */
+.go-fp-mark-btns {
+  display: flex;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.go-fp-mark-btn {
+  flex: 1;
+  padding: 6px 0;
+  border: none;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.go-fp-mark-btn:not(:last-child) {
+  border-right: 1px solid #e2e8f0;
+}
+
+.go-fp-mark-btn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.go-fp-mark-btn--active {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.go-fp-mark-btn--active:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+/* Topic chips */
+.go-fp-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 4px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.go-fp-topic {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.go-fp-topic:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.go-fp-topic--selected {
+  background: #3b82f6;
+  color: #fff;
+  border-color: #3b82f6;
+}
+
+.go-fp-topic--selected:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+/* Buttons */
+.go-fp-actions {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.go-fp-btn {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.go-fp-btn--primary {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.go-fp-btn--primary:hover {
+  background: #2563eb;
+}
+
+.go-fp-btn--ghost {
+  background: none;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.go-fp-btn--ghost:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.go-fp-count {
+  font-size: 12px;
+  color: #64748b;
+  text-align: center;
+  padding: 4px 0;
+  font-weight: 500;
+}
+
+/* ── GateOverflow dark mode class ── */
+body.dark-mode #go-filter-panel,
+body[data-theme="dark"] #go-filter-panel {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.dark-mode .go-fp-input,
+body[data-theme="dark"] .go-fp-input,
+body.dark-mode .go-fp-select,
+body[data-theme="dark"] .go-fp-select {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+body.dark-mode .go-fp-topic,
+body[data-theme="dark"] .go-fp-topic {
+  background: #0f172a;
+  color: #94a3b8;
+  border-color: #334155;
+}
+
+body.dark-mode .go-fp-topics,
+body[data-theme="dark"] .go-fp-topics {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+body.dark-mode .go-fp-mark-btn,
+body[data-theme="dark"] .go-fp-mark-btn {
+  background: #0f172a;
+  color: #94a3b8;
+  border-color: #334155;
+}
+
+body.dark-mode .go-fp-mark-btns,
+body[data-theme="dark"] .go-fp-mark-btns {
+  border-color: #334155;
+}
+
+body.dark-mode .go-fp-label,
+body[data-theme="dark"] .go-fp-label {
+  color: #94a3b8;
+}
+
+body.dark-mode .go-fp-count,
+body[data-theme="dark"] .go-fp-count {
+  color: #94a3b8;
+}
+
+body.dark-mode .go-enhance-toolbar,
+body[data-theme="dark"] .go-enhance-toolbar {
+  background: rgba(59, 130, 246, 0.06);
+  border-color: rgba(59, 130, 246, 0.15);
+}
+
+body.dark-mode .go-mark-btn,
+body[data-theme="dark"] .go-mark-btn {
+  background: #1f2937;
+  color: #9ca3af;
+}
+
+body.dark-mode .go-tag-dropdown,
+body[data-theme="dark"] .go-tag-dropdown {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+/* ══════════════════════════════════════════
+   Page Loader (Load All Pagination)
+   ══════════════════════════════════════════ */
+
+.go-loader-section {
+  margin-bottom: 10px;
+}
+
+.go-loader-btn {
+  width: 100%;
+  font-size: 13px !important;
+  padding: 9px 0 !important;
+}
+
+.go-loader-btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.go-loader-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.go-loader-bar {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.go-loader-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 3px;
+  transition: width 0.3s;
+  width: 0%;
+}
+
+.go-loader-status {
+  font-size: 11px;
+  color: #64748b;
+  white-space: nowrap;
+  font-weight: 500;
+}
