@@ -4,6 +4,10 @@ node_modules/
 # Build output
 dist/
 
+# Raw screen recordings (use demo.mp4 instead)
+demo.mov
+*.mov
+
 # OS files
 .DS_Store
 Thumbs.db

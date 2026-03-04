@@ -12,6 +12,19 @@
 
 A Chrome extension (Manifest V3) that enhances [GateOverflow.in](https://gateoverflow.in) with personal tagging, advanced filtering, and quiz features for GATE preparation.
 
+## Demo
+
+![Demo preview](demo-preview.gif)
+
+<details>
+<summary>▶ Watch full demo</summary>
+
+<video src="https://github.com/YOUR_USERNAME/gate-overflow-enhancer/raw/main/demo.mp4" controls width="100%"></video>
+
+> If the video doesn't load, [download demo.mp4](https://github.com/YOUR_USERNAME/gate-overflow-enhancer/raw/main/demo.mp4) directly.
+
+</details>
+
 ## Features
 
 ### 🏷️ In-Page Tagging (Content Script)
