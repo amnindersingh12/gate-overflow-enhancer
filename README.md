@@ -19,9 +19,9 @@ A Chrome extension (Manifest V3) that enhances [GateOverflow.in](https://gateove
 <details>
 <summary>▶ Watch full demo</summary>
 
-<video src="https://github.com/YOUR_USERNAME/gate-overflow-enhancer/raw/main/demo.mp4" controls width="100%"></video>
+<video src="https://github.com/amnindersingh12/gate-overflow-enhancer/raw/main/demo.mp4" controls width="100%"></video>
 
-> If the video doesn't load, [download demo.mp4](https://github.com/YOUR_USERNAME/gate-overflow-enhancer/raw/main/demo.mp4) directly.
+> If the video doesn't load, [download demo.mp4](https://github.com/amnindersingh12/gate-overflow-enhancer/raw/main/demo.mp4) directly.
 
 </details>
 
